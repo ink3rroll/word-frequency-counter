@@ -222,6 +222,18 @@ function tokenizeWords(string $str): array {
     return $wordsArray;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 $string = "for being a judge on Street Dance Competition during Science Month 2024 with the theme “Integrated Approach in Science and Technology for Sustainable Future” held at Palawan State University Field.";
 
 $new = tokenizeWords($string);
