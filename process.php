@@ -187,20 +187,29 @@ function tokenizeWords(string $str): array {
 
 $string = $_POST["text"];
 $sorting = $_POST["sort"];
-// $string = "The code has a small issue: when converting each word to lowercase in the foreach loop, it doesn’t update the original array values. Since strings are immutable in PHP, you should update the array explicitly within the loop.";
+$limit = $_POST["limit"];
 
 echo "<h2>Text: </h2><section>" . $string . "</section>";
 
 $result = tokenizeWords($string);
 
-// foreach ($new as $word) {
-//     echo $word ."\n";
-// }
-
 $result = wordFrequencies($result);
+$index = 0;
+
+if ($sorting == "asc"){
+    asort($result);
+}
+
+else {
+    arsort($result);
+}
 
 echo "<table><tr><th>Words</th><th>Frequency</th></tr>";
 foreach ($result as $k => $v) {
+    if ($index >= $limit){
+        break;
+    }
+    $index++;
     echo "<tr>" . "<td>" . $k . "</td>" . "<td>" . $v . "</td>";
 }
 echo "</table>";

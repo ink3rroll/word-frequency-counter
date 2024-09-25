@@ -65,3 +65,20 @@ table {
     border-color: black;
     border: solid;
 }
+
+table {
+    width: auto;
+        border-collapse: collapse;
+        }
+    th, td {
+    border: 1px solid #782d2d;
+        padding: 8px;
+        text-align: center;
+        }
+    th {
+    background-color: #b09b9b;
+        }
+        tbody tr:nth-child(odd) {
+        background-color: #dee5f2;
+        color: #251515;
+        }
