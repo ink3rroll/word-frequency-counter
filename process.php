@@ -1,4 +1,30 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Word Frequency Counter</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+    <h1>Word Frequency Counter</h1>
+    <form action="process.php" method="post">
+        <label for="text">Paste your text here:</label><br>
+        <textarea id="text" name="text" rows="10" cols="50" required></textarea><br><br>
+        
+        <label for="sort">Sort by frequency:</label>
+        <select id="sort" name="sort">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select><br><br>
+        
+        <label for="limit">Number of words to display:</label>
+        <input type="number" id="limit" name="limit" value="10" min="1"><br><br>
+        
+        <input type="submit" value="Calculate Word Frequency">
+    </form>
+    
+    <?php
 
 
 
@@ -8,10 +34,13 @@ function removeWordFromArray(array $wordsArray, string $wordToRemove): array {
     });
 }
 
+
+
+
 function wordFrequencies(array $wordsArray): array {
     $wordFrequency = [];
     foreach($wordsArray as $word) {
-        if (array_key_exists($word, $wordsArray)) {
+        if (array_key_exists($word, $wordFrequency)) {
             $wordFrequency[$word] = $wordFrequency[$word] + 1;
         }
 
@@ -157,16 +186,27 @@ function tokenizeWords(string $str): array {
 
 
 $string = $_POST["text"];
+$sorting = $_POST["sort"];
+// $string = "The code has a small issue: when converting each word to lowercase in the foreach loop, it doesn’t update the original array values. Since strings are immutable in PHP, you should update the array explicitly within the loop.";
 
-$new = tokenizeWords($string);
+echo "<h2>Text: </h2><section>" . $string . "</section>";
 
-foreach ($new as $word) {
-    echo $word ."\n";
+$result = tokenizeWords($string);
+
+// foreach ($new as $word) {
+//     echo $word ."\n";
+// }
+
+$result = wordFrequencies($result);
+
+echo "<table><tr><th>Words</th><th>Frequency</th></tr>";
+foreach ($result as $k => $v) {
+    echo "<tr>" . "<td>" . $k . "</td>" . "<td>" . $v . "</td>";
 }
-
-$new = wordFrequencies($new);
-
+echo "</table>";
 
 
 
 ?>
+</body>
+</html>
