@@ -184,7 +184,7 @@ function tokenizeWords(string $str): array {
 
 
 
-
+// declare the data from index
 $string = $_POST["text"];
 $sorting = $_POST["sort"];
 $limit = $_POST["limit"];
@@ -196,6 +196,8 @@ $result = tokenizeWords($string);
 $result = wordFrequencies($result);
 $index = 0;
 
+
+// sort the result based on the data from index
 if ($sorting == "asc"){
     asort($result);
 }
@@ -204,6 +206,7 @@ else {
     arsort($result);
 }
 
+// display the data
 echo "<table><tr><th>Words</th><th>Frequency</th></tr>";
 foreach ($result as $k => $v) {
     if ($index >= $limit){
