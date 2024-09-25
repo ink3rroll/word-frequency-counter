@@ -11,7 +11,14 @@ function removeWordFromArray(array $wordsArray, string $wordToRemove): array {
 function wordFrequencies(array $wordsArray): array {
     $wordFrequency = [];
     foreach($wordsArray as $word) {
-        $wordFrequency[$word] = $wordFrequency[$word] + 1; 
+        if (array_key_exists($word, $wordsArray)) {
+            $wordFrequency[$word] = $wordFrequency[$word] + 1;
+        }
+
+        else {
+            $wordFrequency[$word] = 1;
+        }
+         
     }
 
     return $wordFrequency;
@@ -234,7 +241,7 @@ function tokenizeWords(string $str): array {
 
 
 
-$string = "for being a judge on Street Dance Competition during Science Month 2024 with the theme “Integrated Approach in Science and Technology for Sustainable Future” held at Palawan State University Field.";
+$string = $_POST["text"];
 
 $new = tokenizeWords($string);
 
@@ -243,7 +250,7 @@ foreach ($new as $word) {
 }
 
 $new = wordFrequencies($new);
-print_r($new);
+
 
 
 ?>
